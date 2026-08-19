@@ -1,0 +1,133 @@
+import React from 'react';
+
+export default function HomePage() {
+  return (
+    <div style={{ backgroundColor: '#FAF9F6', fontFamily: 'sans-serif', color: '#1A1A1A', minHeight: '100vh' }}>
+      
+      {/* Navigation Header */}
+      <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', backgroundColor: '#FFFFFF', borderBottom: '1px solid #EAEAEA', position: 'sticky', top: 0, zIndex: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ width: '36px', height: '36px', backgroundColor: '#064E3B', color: '#FFFFFF', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '16px' }}>
+            SS
+          </div>
+          <span style={{ fontWeight: '700', fontSize: '18px', color: '#064E3B', letterSpacing: '-0.5px' }}>Serving Strategy</span>
+        </div>
+        <div style={{ display: 'flex', gap: '12px' }}>
+          <a href="/login" style={{ padding: '8px 16px', borderRadius: '6px', border: '1px solid #064E3B', color: '#064E3B', textDecoration: 'none', fontSize: '14px', fontWeight: '600' }}>Sign In</a>
+          <a href="/register" style={{ padding: '8px 16px', borderRadius: '6px', backgroundColor: '#064E3B', color: '#FFFFFF', textDecoration: 'none', fontSize: '14px', fontWeight: '600' }}>Create Account</a>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section style={{ padding: '60px 24px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+        <span style={{ display: 'inline-block', backgroundColor: '#ECFDF5', color: '#047857', padding: '6px 16px', borderRadius: '20px', fontSize: '13px', fontWeight: '600', marginBottom: '16px', border: '1px solid #A7F3D0' }}>
+          Digital-Asset-Funded Marketplace
+        </span>
+        <h1 style={{ fontSize: '38px', fontWeight: '800', color: '#064E3B', lineHeight: '1.2', margin: '0 0 16px 0' }}>
+          Move value. Shop smarter.
+        </h1>
+        <p style={{ fontSize: '16px', color: '#4B5563', lineHeight: '1.6', margin: '0 0 28px 0' }}>
+          Manage supported digital assets and promotional store credit in one simple account, then spend your eligible balance on everyday essentials.
+        </p>
+        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+          <a href="/register" style={{ padding: '14px 28px', borderRadius: '8px', backgroundColor: '#064E3B', color: '#FFFFFF', textDecoration: 'none', fontWeight: '700', fontSize: '15px' }}>Create Account</a>
+          <a href="#how-it-works" style={{ padding: '14px 28px', borderRadius: '8px', backgroundColor: '#FFFFFF', color: '#1A1A1A', textDecoration: 'none', fontWeight: '600', border: '1px solid #D1D5DB', fontSize: '15px' }}>How It Works</a>
+        </div>
+      </section>
+
+      {/* Interface Preview Image */}
+      <section style={{ padding: '0 24px 60px 24px', maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+        <img 
+          src="image_agent_tag_1074704889324548830" 
+          alt="Serving Strategy Financial Platform Interface" 
+          style={{ width: '100%', height: 'auto', borderRadius: '16px', border: '1px solid #E5E7EB', boxShadow: '0 10px 30px rgba(0,0,0,0.06)' }}
+        />
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" style={{ backgroundColor: '#FFFFFF', padding: '60px 24px', borderTop: '1px solid #EAEAEA', borderBottom: '1px solid #EAEAEA' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '26px', fontWeight: '700', color: '#064E3B', textAlign: 'center', marginBottom: '40px' }}>How Serving Strategy Works</h2>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
+            <div style={{ padding: '20px', borderRadius: '12px', backgroundColor: '#FAF9F6', border: '1px solid #E5E7EB' }}>
+              <div style={{ width: '32px', height: '32px', backgroundColor: '#D97706', color: '#FFF', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', marginBottom: '12px' }}>1</div>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', margin: '0 0 8px 0' }}>Fund Account</h3>
+              <p style={{ fontSize: '13px', color: '#6B7280', margin: 0, lineHeight: '1.5' }}>Deposit via cards, bank transfers, stablecoins, or public Bitcoin address link.</p>
+            </div>
+
+            <div style={{ padding: '20px', borderRadius: '12px', backgroundColor: '#FAF9F6', border: '1px solid #E5E7EB' }}>
+              <div style={{ width: '32px', height: '32px', backgroundColor: '#D97706', color: '#FFF', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', marginBottom: '12px' }}>2</div>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', margin: '0 0 8px 0' }}>Receive Promo Credit</h3>
+              <p style={{ fontSize: '13px', color: '#6B7280', margin: 0, lineHeight: '1.5' }}>Eligible deposits grant promotional store rewards to expand purchasing power.</p>
+            </div>
+
+            <div style={{ padding: '20px', borderRadius: '12px', backgroundColor: '#FAF9F6', border: '1px solid #E5E7EB' }}>
+              <div style={{ width: '32px', height: '32px', backgroundColor: '#D97706', color: '#FFF', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', marginBottom: '12px' }}>3</div>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', margin: '0 0 8px 0' }}>Shop Marketplace</h3>
+              <p style={{ fontSize: '13px', color: '#6B7280', margin: 0, lineHeight: '1.5' }}>Spend combined balances seamlessly on everyday groceries, home, and personal care.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Store Preview Showcase */}
+      <section style={{ padding: '60px 24px', maxWidth: '900px', margin: '0 auto' }}>
+        <h2 style={{ fontSize: '26px', fontWeight: '700', color: '#064E3B', textAlign: 'center', marginBottom: '8px' }}>Everyday Essentials Marketplace</h2>
+        <p style={{ textAlign: 'center', color: '#6B7280', fontSize: '14px', marginBottom: '32px' }}>Browse high-demand items eligible for store promotional credit usage.</p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+          {/* Grocery Card */}
+          <div style={{ backgroundColor: '#FFFFFF', borderRadius: '12px', overflow: 'hidden', border: '1px solid #E5E7EB' }}>
+            <img src="image_agent_tag_1074704889324548553" alt="Fresh Groceries" style={{ width: '100%', height: '160px', objectFit: 'cover' }} />
+            <div style={{ padding: '16px' }}>
+              <span style={{ fontSize: '11px', color: '#047857', fontWeight: '700', textTransform: 'uppercase' }}>Groceries</span>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', margin: '4px 0 8px 0' }}>Essential Grocery Pack</h3>
+              <p style={{ fontSize: '12px', color: '#6B7280', margin: '0 0 12px 0' }}>Rice, pasta, and pantry essentials.</p>
+              <div style={{ fontWeight: '700', color: '#064E3B' }}>$18.00</div>
+            </div>
+          </div>
+
+          {/* Home Care Card */}
+          <div style={{ backgroundColor: '#FFFFFF', borderRadius: '12px', overflow: 'hidden', border: '1px solid #E5E7EB' }}>
+            <img src="image_agent_tag_1074704889324552095" alt="Cleaning Supplies" style={{ width: '100%', height: '160px', objectFit: 'cover' }} />
+            <div style={{ padding: '16px' }}>
+              <span style={{ fontSize: '11px', color: '#047857', fontWeight: '700', textTransform: 'uppercase' }}>Home</span>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', margin: '4px 0 8px 0' }}>Cleaning & Care Bundle</h3>
+              <p style={{ fontSize: '12px', color: '#6B7280', margin: '0 0 12px 0' }}>Laundry detergent and surface cleaners.</p>
+              <div style={{ fontWeight: '700', color: '#064E3B' }}>$15.00</div>
+            </div>
+          </div>
+
+          {/* Personal Care Card */}
+          <div style={{ backgroundColor: '#FFFFFF', borderRadius: '12px', overflow: 'hidden', border: '1px solid #E5E7EB' }}>
+            <img src="image_agent_tag_1074704889324548276" alt="Personal Care Products" style={{ width: '100%', height: '160px', objectFit: 'cover' }} />
+            <div style={{ padding: '16px' }}>
+              <span style={{ fontSize: '11px', color: '#047857', fontWeight: '700', textTransform: 'uppercase' }}>Personal Care</span>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', margin: '4px 0 8px 0' }}>Hygiene Essentials Kit</h3>
+              <p style={{ fontSize: '12px', color: '#6B7280', margin: '0 0 12px 0' }}>Premium soap, shampoo, and toothpaste.</p>
+              <div style={{ fontWeight: '700', color: '#064E3B' }}>$12.00</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Security & Non-Custodial Guarantee */}
+      <section style={{ backgroundColor: '#064E3B', color: '#FFFFFF', padding: '50px 24px', textAlign: 'center' }}>
+        <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '24px', fontWeight: '700', margin: '0 0 12px 0' }}>Security & Non-Custodial Principles</h2>
+          <p style={{ fontSize: '14px', color: '#A7F3D0', lineHeight: '1.6', margin: 0 }}>
+            Serving Strategy strictly operates on non-custodial address linking for Bitcoin. We will <strong>never</strong> request your private keys, seed phrases, or wallet recovery passwords. All promotional credit policies are transparent and non-withdrawable as cash.
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ padding: '32px 24px', textAlign: 'center', fontSize: '12px', color: '#6B7280', backgroundColor: '#FFFFFF', borderTop: '1px solid #EAEAEA' }}>
+        <p style={{ margin: '0 0 8px 0' }}>© 2026 Serving Strategy. All rights reserved.</p>
+        <p style={{ margin: 0 }}>Promotional store credit is restricted to eligible store purchases and does not constitute an investment or withdrawable yield.</p>
+      </footer>
+
+    </div>
+  );
+}
