@@ -1,0 +1,148 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  PENDING_VERIFICATION
+}
+
+enum TransactionType {
+  DEPOSIT
+  PROMO_GRANT
+  STORE_PURCHASE
+  REFUND
+  ADJUSTMENT
+}
+
+enum TransactionStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model User {
+  id             String         @id @default(uuid())
+  name           String
+  email          String         @unique
+  passwordHash   String
+  role           Role           @default(USER)
+  status         UserStatus     @default(ACTIVE)
+  emailVerified  DateTime?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  
+  wallets        Wallet[]
+  ledgerAccount  LedgerAccount?
+  orders         Order[]
+  transactions   Transaction[]
+  promoCredits   PromotionalCredit[]
+}
+
+model Wallet {
+  id            String    @id @default(uuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chain         String    // e.g., "BTC", "SOL", "ETH"
+  asset         String    // e.g., "BTC", "USDC", "USDT"
+  publicAddress String
+  verifiedAt    DateTime?
+  createdAt     DateTime  @default(now())
+
+  @@unique([userId, chain, publicAddress])
+}
+
+// Strict Separation of Ledger Accounts
+model LedgerAccount {
+  id               String   @id @default(uuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currency         String   @default("USD")
+  fundedBalance    Decimal  @default(0.00) @db.Decimal(12, 2) // Withdrawable
+  updatedAt        DateTime @updatedAt
+}
+
+model PromotionalCredit {
+  id               String    @id @default(uuid())
+  userId           String
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  initialAmount    Decimal   @db.Decimal(12, 2)
+  remainingAmount  Decimal   @db.Decimal(12, 2) // Non-withdrawable, store-only
+  issuedAt         DateTime  @default(now())
+  expiresAt        DateTime?
+  restrictions     Json?     // e.g., category restrictions
+}
+
+model Transaction {
+  id                String            @id @default(uuid())
+  userId            String
+  user              User              @relation(fields: [userId], references: [id])
+  type              TransactionType
+  amount            Decimal           @db.Decimal(12, 2)
+  fundedImpact      Decimal           @default(0.00) @db.Decimal(12, 2)
+  promoImpact       Decimal           @default(0.00) @db.Decimal(12, 2)
+  status            TransactionStatus @default(PENDING)
+  providerReference String?
+  blockchainTxId    String?
+  description       String
+  createdAt         DateTime          @default(now())
+}
+
+model Product {
+  id                     String      @id @default(uuid())
+  name                   String
+  description            String
+  price                  Decimal     @db.Decimal(10, 2)
+  category               String
+  inventory              Int
+  imageUrl               String
+  isPromoEligible        Boolean     @default(true)
+  createdAt              DateTime    @default(now())
+  orderItems             OrderItem[]
+}
+
+model Order {
+  id                    String      @id @default(uuid())
+  userId                String
+  user                  User        @relation(fields: [userId], references: [id])
+  subtotal              Decimal     @db.Decimal(10, 2)
+  promoCreditApplied    Decimal     @db.Decimal(10, 2)
+  fundedBalanceApplied Decimal     @db.Decimal(10, 2)
+  deliveryFee           Decimal     @db.Decimal(10, 2)
+  totalPaid             Decimal     @db.Decimal(10, 2)
+  status                OrderStatus @default(PENDING)
+  shippingAddress       Json
+  createdAt             DateTime    @default(now())
+  items                 OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  unitPrice Decimal @db.Decimal(10, 2)
+}
